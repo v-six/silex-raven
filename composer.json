@@ -1,0 +1,24 @@
+{
+    "name": "v-six/silex-raven",
+    "description": "A Silex Service Provider for Raven",
+    "version": "0.1.0",
+    "authors": [
+        {
+            "name": "Kévin Bargoin",
+            "email": "kevin.bargoin@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "pimple/pimple": "~1.0",
+        "raven/raven": "~0.8"
+    },
+    "require-dev": {
+        "silex/silex": "~1.2"
+    },
+    "autoload": {
+        "psr-0": {
+            "SilexRaven": "src"
+        }
+    }
+}
