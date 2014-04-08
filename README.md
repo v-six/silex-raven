@@ -10,7 +10,7 @@ The recommended way to install silex-raven is through [Composer](https://getcomp
 ```json
 {
     "require": {
-        "v-six/silex-raven": "~0.1"
+        "v-six/silex-raven": "~0.1.1"
     }
 }
 ```
@@ -23,28 +23,34 @@ Alternatively, you can download the silex-raven.zip file and extract it.
 $app->register(new SilexRaven\RavenServiceProvider(),
     array(
         'raven.dsn' => 'http://public:secret@example.com/1',
-        'raven.handle.exceptions' => false, // Disable exceptions handler
-        'raven.handle.errors' => true, // Enable errors handler
-        'raven.handle.fatal_errors' => true, // Enable fatal_errors handler
+        'raven.options' => array(
+            'logger' => 'my-logger-name' // Set custom logger name
+        )
+        'raven.handle' => array(
+            'exceptions' => false, // Disable exceptions handler
+            'errors' => true, // Enable errors handler
+            'fatal_errors' => true, // Enable fatal_errors handler
+        )
     )
 );
 ```
 
-All handlers are registered by default, you can disable them by setting corresponding configuration input to false.
+If necessary, set your own options in `raven.options` (see [Raven documentation](https://github.com/getsentry/raven-php#configuration)).
+All handlers are registered by default, you can disable them by setting corresponding configuration input to false in `raven.handle`.
 
 ## Custom
 
-You can easily throw a custom error / exception with the following :
+You can easily capture an error or an exception with the following :
 
 ```php
-// Throw an error with a message
+// Capture an error
 $app['raven']->captureMessage('Oops !');
 
-// Throw an exception
-$app['raven']->captureMessage(new \Exception('Oops !'));
+// Capture an exception
+$app['raven']->captureException(new \Exception('Oops !'));
 
-// Throw an exception with additional debug data
-$app['raven']->captureMessage(new \Exception('Oops !'),
+// Capture an exception with additional debug data
+$app['raven']->captureException(new \Exception('Oops !'),
     array(
         'extra' => array(
             'php_version' => phpversion()
@@ -69,3 +75,20 @@ $app['raven']->extra_context(array('happiness' => 'very'));
 // Clean all previously provided context
 $app['raven']->context->clear();
 ```
+
+Here is a full example coupled with [Silex](https://github.com/silexphp/Silex) error handler (see (Silex error handlers documentation)[http://silex.sensiolabs.org/doc/usage.html#error-handlers]) :
+
+```php
+$app->error(function (\Exception $e, $code) use($app, $user) {
+    $app['raven']->user_context(array('email' => $user->email));
+    $app['raven']->captureException($e)
+    $app['raven']->context->clear();
+
+    return new Response("There is an error !");
+});
+```
+
+# Resources
+
+* (Silex error handlers documentation)[http://silex.sensiolabs.org/doc/usage.html#error-handlers]
+* (Raven documentation)[https://github.com/getsentry/raven-php]
