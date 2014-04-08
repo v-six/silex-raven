@@ -14,7 +14,8 @@
         "raven/raven": "~0.8"
     },
     "require-dev": {
-        "silex/silex": "~1.2"
+        "silex/silex": "~1.2",
+        "phpunit/phpunit": "~3.7"
     },
     "autoload": {
         "psr-0": {

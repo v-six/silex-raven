@@ -22,12 +22,10 @@ Alternatively, you can download the silex-raven.zip file and extract it.
 ```php
 $app->register(new SilexRaven\RavenServiceProvider(),
     array(
-        'dsn' => 'http://public:secret@example.com/1',
-        'handle' => array(
-            'exceptions' => false, // Disable exceptions handler
-            'errors' => true, // Enable errors handler
-            'fatal_errors' => true // Enable fatal_errors handler
-        )
+        'raven.dsn' => 'http://public:secret@example.com/1',
+        'raven.handle.exceptions' => false, // Disable exceptions handler
+        'raven.handle.errors' => true, // Enable errors handler
+        'raven.handle.fatal_errors' => true, // Enable fatal_errors handler
     )
 );
 ```
