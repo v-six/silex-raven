@@ -21,7 +21,9 @@ class RavenServiceProviderTest extends \PHPUnit_Framework_TestCase
             new RavenServiceProvider(),
             array(
                 'raven.dsn' => 'http://public:secret@example.com/1',
-                'raven.handle.exceptions' => false
+                'raven.handle' => array(
+                    'exceptions' => false
+                )
             )
         );
 
