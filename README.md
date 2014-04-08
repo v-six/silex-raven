@@ -76,6 +76,8 @@ $app['raven']->extra_context(array('happiness' => 'very'));
 $app['raven']->context->clear();
 ```
 
+## Example
+
 Here is a full example coupled with [Silex](https://github.com/silexphp/Silex) error handler (see [Silex error handlers documentation](http://silex.sensiolabs.org/doc/usage.html#error-handlers)) :
 
 ```php
