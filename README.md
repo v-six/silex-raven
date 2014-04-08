@@ -40,7 +40,7 @@ You can easily throw a custom error / exception with the following :
 
 ```php
 // Throw an error with a message
-$app['raven']->captureMessage('Error on line 404');
+$app['raven']->captureMessage('Oops !');
 
 // Throw an exception
 $app['raven']->captureMessage(new \Exception('Oops !'));
