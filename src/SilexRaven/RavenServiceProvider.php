@@ -35,15 +35,15 @@ class RavenServiceProvider implements ServiceProviderInterface
                 $errorHandler = new \Raven_ErrorHandler($client);
                 if (isset($app['raven.handle'])) {
                     // Register exception handler
-                    if (!isset($app['raven.handle']['exceptions']) || $app['raven.handle']['exceptions']) {
+                    if (!array_key_exists('exceptions', $app['raven.handle']) || $app['raven.handle']['exceptions']) {
                         $errorHandler->registerExceptionHandler();
                     }
                     // Register error handler
-                    if (!isset($app['raven.handle']['errors']) || $app['raven.handle']['errors']) {
+                    if (!array_key_exists('errors', $app['raven.handle']) || $app['raven.handle']['errors']) {
                         $errorHandler->registerErrorHandler();
                     }
                     // Register shutdown function (to catch fatal errors)
-                    if (!isset($app['raven.handle']['fatal_errors']) || $app['raven.handle']['fatal_errors']) {
+                    if (!array_key_exists('fatal_errors', $app['raven.handle']) || $app['raven.handle']['fatal_errors']) {
                         $errorHandler->registerShutdownFunction();
                     }
                 }
