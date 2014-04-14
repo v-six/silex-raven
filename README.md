@@ -10,7 +10,7 @@ The recommended way to install silex-raven is through [Composer](https://getcomp
 ```json
 {
     "require": {
-        "v-six/silex-raven": "~0.1.1"
+        "v-six/silex-raven": "~0.1.2"
     }
 }
 ```
@@ -81,6 +81,12 @@ $app['raven']->context->clear();
 Here is a full example coupled with [Silex](https://github.com/silexphp/Silex) error handler (see [Silex error handlers documentation](http://silex.sensiolabs.org/doc/usage.html#error-handlers)) :
 
 ```php
+$app = new Silex\Application();
+$app->register(
+    new \SilexRaven\RavenServiceProvider(),
+    ['raven.dsn' => 'http://public:secret@example.com/1']
+);
+
 $app->error(function (\Exception $e, $code) use($app, $user) {
     $app['raven']->user_context(array('email' => $user->email));
     $app['raven']->captureException($e)
