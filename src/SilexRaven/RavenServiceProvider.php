@@ -23,6 +23,7 @@ class RavenServiceProvider implements ServiceProviderInterface
      */
     public function register(Application $app)
     {
+        // Initialize raven client
         $app['raven'] = $app->share(
             function () use ($app) {
                 $dsn = (isset($app['raven.dsn'])) ? $app['raven.dsn'] : '';
@@ -46,6 +47,13 @@ class RavenServiceProvider implements ServiceProviderInterface
                     if (!array_key_exists('fatal_errors', $app['raven.handle']) || $app['raven.handle']['fatal_errors']) {
                         $errorHandler->registerShutdownFunction();
                     }
+                } else {
+                    // Register exception handler
+                    $errorHandler->registerExceptionHandler();
+                    // Register error handler
+                    $errorHandler->registerErrorHandler();
+                    // Register shutdown function (to catch fatal errors)
+                    $errorHandler->registerShutdownFunction();
                 }
 
                 return $client;
