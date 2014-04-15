@@ -10,7 +10,7 @@ The recommended way to install silex-raven is through [Composer](https://getcomp
 ```json
 {
     "require": {
-        "v-six/silex-raven": "~0.1.3"
+        "v-six/silex-raven": "0.1.*"
     }
 }
 ```
