@@ -1,7 +1,9 @@
 {
     "name": "v-six/silex-raven",
+    "homepage": "https://github.com/v-six/silex-raven",
+    "type": "library",
     "description": "A Silex Service Provider for Raven",
-    "version": "0.1.2",
+    "keywords": ["raven", "sentry", "silex", "error", "raven-php"],
     "license": "MIT",
     "authors": [
         {
