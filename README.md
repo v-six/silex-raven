@@ -1,7 +1,7 @@
 silex-raven
 ===========
 
-A basic [Silex](https://github.com/silexphp/Silex) service provider for [getsentry/raven-php](https://github.com/getsentry/raven-php).
+A basic [Silex](https://github.com/silexphp/Silex) service provider for PHP client for [Sentry](https://getsentry.com/welcome/) : [getsentry/raven-php](https://github.com/getsentry/raven-php).
 
 # Installation
 
